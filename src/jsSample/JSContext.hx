@@ -2,16 +2,9 @@ package jsSample;
 
 import xirsys.cube.core.Agent;
 import js.Dom.HtmlDom;
-import sample.events.BoxEvent;
 import xirsys.cube.events.IEvent;
 import xirsys.cube.events.AgentEvent;
-import sample.controller.ShowBoxCommand;
-import sample.view.BlueBoxView;
-import sample.view.BlueBoxViewMediator;
-import sample.view.RedBoxView;
-import sample.view.RedBoxViewMediator;
-import sample.view.ControlsView;
-import sample.view.ControlsViewMediator;
+
 
 import com.ruedaminute.icebreakers.view.Slide;
 import com.ruedaminute.icebreakers.view.SlideMediator;
@@ -37,9 +30,6 @@ class JSContext extends Agent<Dynamic,IEvent> {
 	
 	override public function initiate()
 	{
-		mediatorMap.mapView( BlueBoxView, BlueBoxViewMediator );
-		mediatorMap.mapView( RedBoxView, RedBoxViewMediator );
-		mediatorMap.mapView(ControlsView, ControlsViewMediator);
 		
 		mediatorMap.mapView(SlideViewer, SlideViewerMediator);
 		mediatorMap.mapView(SplashScreenView, SplashViewMediator);
@@ -49,7 +39,6 @@ class JSContext extends Agent<Dynamic,IEvent> {
 		
 		commandMap.mapEvent ( AppEvent.LOAD_DATA, LoadDataCommand, AppEvent);
 		commandMap.mapEvent ( AppEvent.SHOW_SLIDE_OF_TYPE, ShowSlidesCommand, AppEvent);
-		commandMap.mapEvent( BoxEvent.SHOW_BOX, ShowBoxCommand, BoxEvent );
 		
 		injector.mapSingleton( Model );
 		

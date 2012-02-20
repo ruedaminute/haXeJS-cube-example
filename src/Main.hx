@@ -14,12 +14,9 @@ import com.ruedaminute.icebreakers.view.SplashScreenView;
 import com.ruedaminute.icebreakers.view.MenuView;
 import js.JQuery;
 import js.Lib;
-import sample.view.BodyView;
-import sample.view.ControlsView;
+import com.ruedaminute.icebreakers.view.BodyView;
 import jsSample.JSContext;
-import sample.view.BlueBoxView;
-import sample.view.RedBoxView;
-import sample.events.BoxEvent;
+
 import xirsys.cube.events.AgentEvent;
 import xirsys.cube.events.IEvent;
 
@@ -59,14 +56,5 @@ class Main {
 		agent.eventDispatcher.dispatch( AppEvent.SHOW_SPLASH, new AppEvent() );
 		agent.eventDispatcher.dispatch( AppEvent.LOAD_DATA, new AppEvent() );
 	}
-	
-	private function handleRedClick( evt )
-	{
-		agent.eventDispatcher.dispatch( BoxEvent.SHOW_BOX, new BoxEvent( "red" ) );
-	}
-	
-	private dynamic function handleBlueClick( evt )
-	{
-		agent.eventDispatcher.dispatch( BoxEvent.SHOW_BOX, new BoxEvent( "blue" ) );
-	}
+
 }
