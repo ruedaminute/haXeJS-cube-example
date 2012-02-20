@@ -1,37 +1,42 @@
 <html>
 <head>
 	<script src="main.js" type="text/javascript" charset="utf-8"></script>
+	<link rel="stylesheet" href="styles.css" />
+
 </head>
 <body>
-	<div id="splashScreen">
-		Welcome to 101 IceBreakers!
-		
-		Sometimes you need a little nudge to get the conversation going.
-		
-		And we're here for you!
-		
-		<button class="startButton">START</button>
-		
-	</div>
-	<div id="menuScreen">
-		Select an icebreaker type to get started:
-		<ul>
-			<li><button id="businessButton">Business</button></li>
-			<li><button id="partyButton">Party</button></li>
-			<li><button id="flirtingButton">Flirting</button></li>
-			<li><button id="miscButton">Misc</button></li>
-		</ul>
-		
-	</div>
-	<div id="slide">
-		<div class="content">
+	<div id="container">
+		<div id="splashScreen">
+			<p>Welcome to 101 IceBreakers!</p>
+			
+			<p>Sometimes you need a little nudge to get the conversation going.</p>
+			<p>And we're here for you!</p>
+			
+			<button id="startButton">START</button>
 			
 		</div>
-		<button onclick="Main.prototype.getNextSlide()">NEXT</button>
+		<div id="menuScreen">
+			Select an icebreaker type to get started:
+			<ul>
+				<li><button id="businessButton">Business</button></li>
+				<li><button id="partyButton">Party</button></li>
+				<li><button id="flirtingButton">Flirting</button></li>
+				<li><button id="miscButton">Misc</button></li>
+			</ul>
+			
+		</div>
+		<div id="slide">
+			<a id="backButton" href="#">Back</a>
+			<div class="content">
+				
+			</div>
+			<button id="nextButton" >GET RANDOM ICEBREAKER</button>
+		</div>
+		<div class="prompt"></div>
+		<div class="reply"></div>
 	</div>
-	<div class="prompt"></div>
-	<div class="reply"></div>
 	<script type="text/javascript" charset="utf-8">
 		Main.main();
 	</script>
+	
 </body>

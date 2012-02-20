@@ -1,0 +1,36 @@
+body
+{
+	color: #ffffff;
+	font-size: 18px;
+	font-weight: bold;
+	font-family: Tahoma;
+}
+
+div
+{
+	padding: 10px;
+}
+
+#container
+{
+	width: 320px;
+	height: 480px;
+	background-color: #000000;
+	
+}
+
+#splashScreen
+{
+	background-color: #c7e9eb;
+	text-align: center;
+	color: #7f9293;
+}
+.prompt
+{
+	color: #ff0000;
+}
+
+.reply
+{
+	color: #00gg00;
+}

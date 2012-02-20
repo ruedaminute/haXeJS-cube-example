@@ -201,6 +201,86 @@ xirsys.cube.core.MediatorMap.prototype.deleteMediatorByView = function(view) {
 }
 xirsys.cube.core.MediatorMap.prototype.__class__ = xirsys.cube.core.MediatorMap;
 xirsys.cube.core.MediatorMap.__interfaces__ = [xirsys.cube.abstract.IMediatorMap];
+if(typeof com=='undefined') com = {}
+if(!com.ruedaminute) com.ruedaminute = {}
+if(!com.ruedaminute.icebreakers) com.ruedaminute.icebreakers = {}
+if(!com.ruedaminute.icebreakers.model) com.ruedaminute.icebreakers.model = {}
+com.ruedaminute.icebreakers.model.LineVO = function(type,text) {
+	if( type === $_ ) return;
+	this.text = text;
+	this.type = type;
+}
+com.ruedaminute.icebreakers.model.LineVO.__name__ = ["com","ruedaminute","icebreakers","model","LineVO"];
+com.ruedaminute.icebreakers.model.LineVO.prototype.text = null;
+com.ruedaminute.icebreakers.model.LineVO.prototype.type = null;
+com.ruedaminute.icebreakers.model.LineVO.prototype.__class__ = com.ruedaminute.icebreakers.model.LineVO;
+if(!com.ruedaminute.icebreakers.view) com.ruedaminute.icebreakers.view = {}
+com.ruedaminute.icebreakers.view.AppView = function(splashView,menuView,slideViewer) {
+	if( splashView === $_ ) return;
+	this.splashView = splashView;
+	this.menuView = menuView;
+	this.slideViewer = slideViewer;
+}
+com.ruedaminute.icebreakers.view.AppView.__name__ = ["com","ruedaminute","icebreakers","view","AppView"];
+com.ruedaminute.icebreakers.view.AppView.prototype.splashView = null;
+com.ruedaminute.icebreakers.view.AppView.prototype.menuView = null;
+com.ruedaminute.icebreakers.view.AppView.prototype.slideViewer = null;
+com.ruedaminute.icebreakers.view.AppView.prototype.showSplashScreen = function(event) {
+	this.splashView.show();
+	this.menuView.hide();
+	this.slideViewer.hide();
+}
+com.ruedaminute.icebreakers.view.AppView.prototype.showMenuScreen = function(event) {
+	this.splashView.hide();
+	this.menuView.show();
+	this.slideViewer.hide();
+}
+com.ruedaminute.icebreakers.view.AppView.prototype.showSlides = function(event) {
+	this.splashView.hide();
+	this.menuView.hide();
+	this.slideViewer.show();
+}
+com.ruedaminute.icebreakers.view.AppView.prototype.__class__ = com.ruedaminute.icebreakers.view.AppView;
+com.ruedaminute.icebreakers.view.Slide = function(p) {
+	if( p === $_ ) return;
+	this.dom = new js.JQuery("#slide");
+	this.prompt = new js.JQuery(".prompt");
+	this.reply = new js.JQuery(".reply");
+	this.nextButton = new js.JQuery("#nextButton");
+	this.backButton = new js.JQuery("#backButton");
+}
+com.ruedaminute.icebreakers.view.Slide.__name__ = ["com","ruedaminute","icebreakers","view","Slide"];
+com.ruedaminute.icebreakers.view.Slide.prototype.dom = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.nextButton = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.backButton = null;
+com.ruedaminute.icebreakers.view.Slide.prototype._data = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.prompt = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.reply = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.clear = function() {
+	new js.JQuery(".content").html("");
+}
+com.ruedaminute.icebreakers.view.Slide.prototype.get_data = function() {
+	return this._data;
+}
+com.ruedaminute.icebreakers.view.Slide.prototype.set_data = function(value) {
+	this._data = value;
+	this.createSlideContent();
+	return this._data;
+}
+com.ruedaminute.icebreakers.view.Slide.prototype.data = null;
+com.ruedaminute.icebreakers.view.Slide.prototype.createSlideContent = function() {
+	var content = this.dom.find(".content");
+	var _g1 = 0, _g = this.get_data().length;
+	while(_g1 < _g) {
+		var i = _g1++;
+		var line = this.get_data()[i];
+		var copy;
+		if(line.type == "prompt") copy = this.prompt.clone(false); else if(line.type == "reply") copy = this.reply.clone(false); else copy = this.prompt.clone(false);
+		copy.html(line.text);
+		new js.JQuery(content[0]).append(copy);
+	}
+}
+com.ruedaminute.icebreakers.view.Slide.prototype.__class__ = com.ruedaminute.icebreakers.view.Slide;
 List = function(p) {
 	if( p === $_ ) return;
 	this.length = 0;
@@ -313,6 +393,71 @@ List.prototype.map = function(f) {
 	return b;
 }
 List.prototype.__class__ = List;
+if(typeof haxe=='undefined') haxe = {}
+if(!haxe.rtti) haxe.rtti = {}
+haxe.rtti.Infos = function() { }
+haxe.rtti.Infos.__name__ = ["haxe","rtti","Infos"];
+haxe.rtti.Infos.prototype.__class__ = haxe.rtti.Infos;
+xirsys.cube.abstract.IMediator = function() { }
+xirsys.cube.abstract.IMediator.__name__ = ["xirsys","cube","abstract","IMediator"];
+xirsys.cube.abstract.IMediator.prototype.mediatorMap = null;
+xirsys.cube.abstract.IMediator.prototype.eventDispatcher = null;
+xirsys.cube.abstract.IMediator.prototype.injector = null;
+xirsys.cube.abstract.IMediator.prototype.preRegister = null;
+xirsys.cube.abstract.IMediator.prototype.onRegister = null;
+xirsys.cube.abstract.IMediator.prototype.preRemove = null;
+xirsys.cube.abstract.IMediator.prototype.onRemove = null;
+xirsys.cube.abstract.IMediator.prototype.getViewComponent = null;
+xirsys.cube.abstract.IMediator.prototype.setViewComponent = null;
+xirsys.cube.abstract.IMediator.prototype.__class__ = xirsys.cube.abstract.IMediator;
+if(!xirsys.cube.mvcs) xirsys.cube.mvcs = {}
+xirsys.cube.mvcs.Mediator = function(p) {
+	if( p === $_ ) return;
+	this.eventMap = new xirsys.cube.core.EventMap(this.eventDispatcher);
+}
+xirsys.cube.mvcs.Mediator.__name__ = ["xirsys","cube","mvcs","Mediator"];
+xirsys.cube.mvcs.Mediator.prototype.mediatorMap = null;
+xirsys.cube.mvcs.Mediator.prototype.eventDispatcher = null;
+xirsys.cube.mvcs.Mediator.prototype.injector = null;
+xirsys.cube.mvcs.Mediator.prototype.eventMap = null;
+xirsys.cube.mvcs.Mediator.prototype.viewComponent = null;
+xirsys.cube.mvcs.Mediator.prototype.removed = null;
+xirsys.cube.mvcs.Mediator.prototype.preRemove = function() {
+	if(this.eventMap != null) this.eventMap.unmapListeners();
+	this.removed = true;
+	this.onRemove();
+}
+xirsys.cube.mvcs.Mediator.prototype.preRegister = function() {
+	this.removed = false;
+	this.onRegister();
+}
+xirsys.cube.mvcs.Mediator.prototype.onRegister = function() {
+}
+xirsys.cube.mvcs.Mediator.prototype.onRemove = function() {
+}
+xirsys.cube.mvcs.Mediator.prototype.getViewComponent = function() {
+	return this.viewComponent;
+}
+xirsys.cube.mvcs.Mediator.prototype.setViewComponent = function(view) {
+	this.viewComponent = view;
+}
+xirsys.cube.mvcs.Mediator.prototype.__class__ = xirsys.cube.mvcs.Mediator;
+xirsys.cube.mvcs.Mediator.__interfaces__ = [haxe.rtti.Infos,xirsys.cube.abstract.IMediator];
+com.ruedaminute.icebreakers.view.AppViewMediator = function(p) {
+	if( p === $_ ) return;
+	xirsys.cube.mvcs.Mediator.call(this);
+}
+com.ruedaminute.icebreakers.view.AppViewMediator.__name__ = ["com","ruedaminute","icebreakers","view","AppViewMediator"];
+com.ruedaminute.icebreakers.view.AppViewMediator.__super__ = xirsys.cube.mvcs.Mediator;
+for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.AppViewMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
+com.ruedaminute.icebreakers.view.AppViewMediator.prototype.view = null;
+com.ruedaminute.icebreakers.view.AppViewMediator.prototype.onRegister = function() {
+	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
+	this.eventDispatcher.addEventHandler(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SPLASH,$closure(this.view,"showSplashScreen"));
+	this.eventDispatcher.addEventHandler(com.ruedaminute.icebreakers.events.AppEvent.SHOW_MENU,$closure(this.view,"showMenuScreen"));
+	this.eventDispatcher.addEventHandler(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDES,$closure(this.view,"showSlides"));
+}
+com.ruedaminute.icebreakers.view.AppViewMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.AppViewMediator;
 xirsys.cube.abstract.ICommandMap = function() { }
 xirsys.cube.abstract.ICommandMap.__name__ = ["xirsys","cube","abstract","ICommandMap"];
 xirsys.cube.abstract.ICommandMap.prototype.eventDispatcher = null;
@@ -494,8 +639,6 @@ xirsys.injector.Injector.prototype.getClassDef = function(cls) {
 	return infos[0] == "TClassdecl"?infos.slice(2)[0]:null;
 }
 xirsys.injector.Injector.prototype.__class__ = xirsys.injector.Injector;
-if(typeof haxe=='undefined') haxe = {}
-if(!haxe.rtti) haxe.rtti = {}
 haxe.rtti.XmlParser = function(p) {
 	if( p === $_ ) return;
 	this.root = new Array();
@@ -992,10 +1135,6 @@ haxe.rtti.XmlParser.prototype.defplat = function() {
 	return l;
 }
 haxe.rtti.XmlParser.prototype.__class__ = haxe.rtti.XmlParser;
-haxe.rtti.Infos = function() { }
-haxe.rtti.Infos.__name__ = ["haxe","rtti","Infos"];
-haxe.rtti.Infos.prototype.__class__ = haxe.rtti.Infos;
-if(!xirsys.cube.mvcs) xirsys.cube.mvcs = {}
 xirsys.cube.mvcs.Actor = function() { }
 xirsys.cube.mvcs.Actor.__name__ = ["xirsys","cube","mvcs","Actor"];
 xirsys.cube.mvcs.Actor.prototype.eventDispatcher = null;
@@ -1175,9 +1314,6 @@ if(!xirsys.cube.events) xirsys.cube.events = {}
 xirsys.cube.events.IEvent = function() { }
 xirsys.cube.events.IEvent.__name__ = ["xirsys","cube","events","IEvent"];
 xirsys.cube.events.IEvent.prototype.__class__ = xirsys.cube.events.IEvent;
-if(typeof com=='undefined') com = {}
-if(!com.ruedaminute) com.ruedaminute = {}
-if(!com.ruedaminute.icebreakers) com.ruedaminute.icebreakers = {}
 if(!com.ruedaminute.icebreakers.events) com.ruedaminute.icebreakers.events = {}
 com.ruedaminute.icebreakers.events.AppEvent = function(type) {
 	if( type === $_ ) return;
@@ -1329,60 +1465,18 @@ jsSample.JSContext.prototype.initiate = function() {
 	this.getMediatorMap().mapView(sample.view.BlueBoxView,sample.view.BlueBoxViewMediator);
 	this.getMediatorMap().mapView(sample.view.RedBoxView,sample.view.RedBoxViewMediator);
 	this.getMediatorMap().mapView(sample.view.ControlsView,sample.view.ControlsViewMediator);
-	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.SlideView,com.ruedaminute.icebreakers.view.SlideViewMediator);
+	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.SlideViewer,com.ruedaminute.icebreakers.view.SlideViewerMediator);
 	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.SplashScreenView,com.ruedaminute.icebreakers.view.SplashViewMediator);
 	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.MenuView,com.ruedaminute.icebreakers.view.MenuViewMediator);
-	this.getCommandMap().mapEvent(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE,com.ruedaminute.icebreakers.controller.ShowSlideCommand,com.ruedaminute.icebreakers.events.AppEvent);
+	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.AppView,com.ruedaminute.icebreakers.view.AppViewMediator);
+	this.getMediatorMap().mapView(com.ruedaminute.icebreakers.view.Slide,com.ruedaminute.icebreakers.view.SlideMediator);
+	this.getCommandMap().mapEvent(com.ruedaminute.icebreakers.events.AppEvent.LOAD_DATA,com.ruedaminute.icebreakers.controller.LoadDataCommand,com.ruedaminute.icebreakers.events.AppEvent);
+	this.getCommandMap().mapEvent(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,com.ruedaminute.icebreakers.controller.ShowSlidesCommand,com.ruedaminute.icebreakers.events.AppEvent);
 	this.getCommandMap().mapEvent(sample.events.BoxEvent.SHOW_BOX,sample.controller.ShowBoxCommand,sample.events.BoxEvent);
 	this.getInjector().mapSingleton(com.ruedaminute.icebreakers.model.Model);
 	this.dispatch(xirsys.cube.events.AgentEvent.STARTUP_COMPLETE,null);
 }
 jsSample.JSContext.prototype.__class__ = jsSample.JSContext;
-xirsys.cube.abstract.IMediator = function() { }
-xirsys.cube.abstract.IMediator.__name__ = ["xirsys","cube","abstract","IMediator"];
-xirsys.cube.abstract.IMediator.prototype.mediatorMap = null;
-xirsys.cube.abstract.IMediator.prototype.eventDispatcher = null;
-xirsys.cube.abstract.IMediator.prototype.injector = null;
-xirsys.cube.abstract.IMediator.prototype.preRegister = null;
-xirsys.cube.abstract.IMediator.prototype.onRegister = null;
-xirsys.cube.abstract.IMediator.prototype.preRemove = null;
-xirsys.cube.abstract.IMediator.prototype.onRemove = null;
-xirsys.cube.abstract.IMediator.prototype.getViewComponent = null;
-xirsys.cube.abstract.IMediator.prototype.setViewComponent = null;
-xirsys.cube.abstract.IMediator.prototype.__class__ = xirsys.cube.abstract.IMediator;
-xirsys.cube.mvcs.Mediator = function(p) {
-	if( p === $_ ) return;
-	this.eventMap = new xirsys.cube.core.EventMap(this.eventDispatcher);
-}
-xirsys.cube.mvcs.Mediator.__name__ = ["xirsys","cube","mvcs","Mediator"];
-xirsys.cube.mvcs.Mediator.prototype.mediatorMap = null;
-xirsys.cube.mvcs.Mediator.prototype.eventDispatcher = null;
-xirsys.cube.mvcs.Mediator.prototype.injector = null;
-xirsys.cube.mvcs.Mediator.prototype.eventMap = null;
-xirsys.cube.mvcs.Mediator.prototype.viewComponent = null;
-xirsys.cube.mvcs.Mediator.prototype.removed = null;
-xirsys.cube.mvcs.Mediator.prototype.preRemove = function() {
-	if(this.eventMap != null) this.eventMap.unmapListeners();
-	this.removed = true;
-	this.onRemove();
-}
-xirsys.cube.mvcs.Mediator.prototype.preRegister = function() {
-	this.removed = false;
-	this.onRegister();
-}
-xirsys.cube.mvcs.Mediator.prototype.onRegister = function() {
-}
-xirsys.cube.mvcs.Mediator.prototype.onRemove = function() {
-}
-xirsys.cube.mvcs.Mediator.prototype.getViewComponent = function() {
-	return this.viewComponent;
-}
-xirsys.cube.mvcs.Mediator.prototype.setViewComponent = function(view) {
-	this.viewComponent = view;
-}
-xirsys.cube.mvcs.Mediator.prototype.__class__ = xirsys.cube.mvcs.Mediator;
-xirsys.cube.mvcs.Mediator.__interfaces__ = [haxe.rtti.Infos,xirsys.cube.abstract.IMediator];
-if(!com.ruedaminute.icebreakers.view) com.ruedaminute.icebreakers.view = {}
 com.ruedaminute.icebreakers.view.SplashViewMediator = function(p) {
 	if( p === $_ ) return;
 	xirsys.cube.mvcs.Mediator.call(this);
@@ -1393,10 +1487,10 @@ for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.v
 com.ruedaminute.icebreakers.view.SplashViewMediator.prototype.view = null;
 com.ruedaminute.icebreakers.view.SplashViewMediator.prototype.onRegister = function() {
 	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
-	this.view.startButton.onclick = $closure(this,"handleButtonClick");
+	this.view.startButton.click($closure(this,"handleButtonClick"));
 }
 com.ruedaminute.icebreakers.view.SplashViewMediator.prototype.handleButtonClick = function(e) {
-	if(e.target == this.view.startButton) js.Lib.alert("yo");
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_MENU,new com.ruedaminute.icebreakers.events.AppEvent());
 }
 com.ruedaminute.icebreakers.view.SplashViewMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.SplashViewMediator;
 sample.view.RedBoxViewMediator = function(p) {
@@ -1419,19 +1513,6 @@ sample.view.RedBoxViewMediator.prototype.hideBox = function(e) {
 	this.view.setVisible(false);
 }
 sample.view.RedBoxViewMediator.prototype.__class__ = sample.view.RedBoxViewMediator;
-com.ruedaminute.icebreakers.view.SlideViewMediator = function(p) {
-	if( p === $_ ) return;
-	xirsys.cube.mvcs.Mediator.call(this);
-}
-com.ruedaminute.icebreakers.view.SlideViewMediator.__name__ = ["com","ruedaminute","icebreakers","view","SlideViewMediator"];
-com.ruedaminute.icebreakers.view.SlideViewMediator.__super__ = xirsys.cube.mvcs.Mediator;
-for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.SlideViewMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
-com.ruedaminute.icebreakers.view.SlideViewMediator.prototype.view = null;
-com.ruedaminute.icebreakers.view.SlideViewMediator.prototype.onRegister = function() {
-	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
-	new js.JQuery(this.view.view).html("REPLACEING SHIT");
-}
-com.ruedaminute.icebreakers.view.SlideViewMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.SlideViewMediator;
 IntIter = function(min,max) {
 	if( min === $_ ) return;
 	this.min = min;
@@ -1447,6 +1528,28 @@ IntIter.prototype.next = function() {
 	return this.min++;
 }
 IntIter.prototype.__class__ = IntIter;
+xirsys.cube.mvcs.Command = function() { }
+xirsys.cube.mvcs.Command.__name__ = ["xirsys","cube","mvcs","Command"];
+xirsys.cube.mvcs.Command.prototype.commandMap = null;
+xirsys.cube.mvcs.Command.prototype.eventDispatcher = null;
+xirsys.cube.mvcs.Command.prototype.injector = null;
+xirsys.cube.mvcs.Command.prototype.mediatorMap = null;
+xirsys.cube.mvcs.Command.prototype.Command = function() {
+}
+xirsys.cube.mvcs.Command.prototype.execute = function() {
+}
+xirsys.cube.mvcs.Command.prototype.__class__ = xirsys.cube.mvcs.Command;
+xirsys.cube.mvcs.Command.__interfaces__ = [haxe.rtti.Infos];
+if(!com.ruedaminute.icebreakers.controller) com.ruedaminute.icebreakers.controller = {}
+com.ruedaminute.icebreakers.controller.LoadDataCommand = function() { }
+com.ruedaminute.icebreakers.controller.LoadDataCommand.__name__ = ["com","ruedaminute","icebreakers","controller","LoadDataCommand"];
+com.ruedaminute.icebreakers.controller.LoadDataCommand.__super__ = xirsys.cube.mvcs.Command;
+for(var k in xirsys.cube.mvcs.Command.prototype ) com.ruedaminute.icebreakers.controller.LoadDataCommand.prototype[k] = xirsys.cube.mvcs.Command.prototype[k];
+com.ruedaminute.icebreakers.controller.LoadDataCommand.prototype.model = null;
+com.ruedaminute.icebreakers.controller.LoadDataCommand.prototype.execute = function() {
+	this.model.setData();
+}
+com.ruedaminute.icebreakers.controller.LoadDataCommand.prototype.__class__ = com.ruedaminute.icebreakers.controller.LoadDataCommand;
 xirsys.cube.abstract.IViewMap = function() { }
 xirsys.cube.abstract.IViewMap.__name__ = ["xirsys","cube","abstract","IViewMap"];
 xirsys.cube.abstract.IViewMap.prototype.__class__ = xirsys.cube.abstract.IViewMap;
@@ -1505,6 +1608,39 @@ xirsys.cube.core.ViewMap.prototype.indexOf = function(arr,itm) {
 }
 xirsys.cube.core.ViewMap.prototype.__class__ = xirsys.cube.core.ViewMap;
 xirsys.cube.core.ViewMap.__interfaces__ = [xirsys.cube.abstract.IViewMap];
+com.ruedaminute.icebreakers.view.BaseView = function() { }
+com.ruedaminute.icebreakers.view.BaseView.__name__ = ["com","ruedaminute","icebreakers","view","BaseView"];
+com.ruedaminute.icebreakers.view.BaseView.prototype.view = null;
+com.ruedaminute.icebreakers.view.BaseView.prototype.show = function() {
+	new js.JQuery(this.view).css("display","block");
+}
+com.ruedaminute.icebreakers.view.BaseView.prototype.hide = function() {
+	new js.JQuery(this.view).css("display","none");
+}
+com.ruedaminute.icebreakers.view.BaseView.prototype.__class__ = com.ruedaminute.icebreakers.view.BaseView;
+com.ruedaminute.icebreakers.view.SlideViewer = function(view) {
+	if( view === $_ ) return;
+	this.view = view;
+	this.firstRun = true;
+}
+com.ruedaminute.icebreakers.view.SlideViewer.__name__ = ["com","ruedaminute","icebreakers","view","SlideViewer"];
+com.ruedaminute.icebreakers.view.SlideViewer.__super__ = com.ruedaminute.icebreakers.view.BaseView;
+for(var k in com.ruedaminute.icebreakers.view.BaseView.prototype ) com.ruedaminute.icebreakers.view.SlideViewer.prototype[k] = com.ruedaminute.icebreakers.view.BaseView.prototype[k];
+com.ruedaminute.icebreakers.view.SlideViewer.prototype.currentSlide = null;
+com.ruedaminute.icebreakers.view.SlideViewer.prototype.firstRun = null;
+com.ruedaminute.icebreakers.view.SlideViewer.prototype.createSlide = function(event) {
+	if(event.conversation != null && this.firstRun) {
+		this.currentSlide = new com.ruedaminute.icebreakers.view.Slide();
+		this.currentSlide.set_data(event.conversation.script);
+		this.firstRun = false;
+		return this.currentSlide;
+	} else if(event.conversation != null && !this.firstRun) {
+		this.currentSlide.clear();
+		this.currentSlide.set_data(event.conversation.script);
+		return null;
+	} else return null;
+}
+com.ruedaminute.icebreakers.view.SlideViewer.prototype.__class__ = com.ruedaminute.icebreakers.view.SlideViewer;
 sample.view.ControlsView = function(view) {
 	if( view === $_ ) return;
 	this.view = view;
@@ -1828,6 +1964,26 @@ xirsys.cube.core.Proxy.prototype.register = function(model) {
 }
 xirsys.cube.core.Proxy.prototype.__class__ = xirsys.cube.core.Proxy;
 xirsys.cube.core.Proxy.__interfaces__ = [xirsys.cube.abstract.IProxy];
+com.ruedaminute.icebreakers.view.SlideMediator = function(p) {
+	if( p === $_ ) return;
+	xirsys.cube.mvcs.Mediator.call(this);
+}
+com.ruedaminute.icebreakers.view.SlideMediator.__name__ = ["com","ruedaminute","icebreakers","view","SlideMediator"];
+com.ruedaminute.icebreakers.view.SlideMediator.__super__ = xirsys.cube.mvcs.Mediator;
+for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.SlideMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
+com.ruedaminute.icebreakers.view.SlideMediator.prototype.view = null;
+com.ruedaminute.icebreakers.view.SlideMediator.prototype.onRegister = function() {
+	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
+	this.view.nextButton.click($closure(this,"getNextSlide"));
+	this.view.backButton.click($closure(this,"getMenuView"));
+}
+com.ruedaminute.icebreakers.view.SlideMediator.prototype.getNextSlide = function(event) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,new com.ruedaminute.icebreakers.events.AppEvent());
+}
+com.ruedaminute.icebreakers.view.SlideMediator.prototype.getMenuView = function(event) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_MENU,new com.ruedaminute.icebreakers.events.AppEvent());
+}
+com.ruedaminute.icebreakers.view.SlideMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.SlideMediator;
 if(typeof js=='undefined') js = {}
 js.Boot = function() { }
 js.Boot.__name__ = ["js","Boot"];
@@ -2470,6 +2626,18 @@ xirsys.cube.core.CommandMap.prototype.routeEventToCommand = function(eventType,c
 }
 xirsys.cube.core.CommandMap.prototype.__class__ = xirsys.cube.core.CommandMap;
 xirsys.cube.core.CommandMap.__interfaces__ = [xirsys.cube.abstract.ICommandMap];
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand = function() { }
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.__name__ = ["com","ruedaminute","icebreakers","controller","ShowSlidesCommand"];
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.__super__ = xirsys.cube.mvcs.Command;
+for(var k in xirsys.cube.mvcs.Command.prototype ) com.ruedaminute.icebreakers.controller.ShowSlidesCommand.prototype[k] = xirsys.cube.mvcs.Command.prototype[k];
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.prototype.event = null;
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.prototype.model = null;
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.prototype.execute = function() {
+	if(this.event.slideType != null) this.model.currentSlideType = this.event.slideType;
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.SlideEvent.SHOW_SLIDE,new com.ruedaminute.icebreakers.events.SlideEvent(this.model.getData(this.model.currentSlideType)));
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDES,new com.ruedaminute.icebreakers.events.AppEvent());
+}
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.prototype.__class__ = com.ruedaminute.icebreakers.controller.ShowSlidesCommand;
 if(!sample.events) sample.events = {}
 sample.events.BoxEvent = function(type) {
 	if( type === $_ ) return;
@@ -2479,6 +2647,14 @@ sample.events.BoxEvent.__name__ = ["sample","events","BoxEvent"];
 sample.events.BoxEvent.prototype.boxType = null;
 sample.events.BoxEvent.prototype.__class__ = sample.events.BoxEvent;
 sample.events.BoxEvent.__interfaces__ = [xirsys.cube.events.IEvent];
+com.ruedaminute.icebreakers.events.SlideEvent = function(convo) {
+	if( convo === $_ ) return;
+	this.conversation = convo;
+}
+com.ruedaminute.icebreakers.events.SlideEvent.__name__ = ["com","ruedaminute","icebreakers","events","SlideEvent"];
+com.ruedaminute.icebreakers.events.SlideEvent.prototype.conversation = null;
+com.ruedaminute.icebreakers.events.SlideEvent.prototype.__class__ = com.ruedaminute.icebreakers.events.SlideEvent;
+com.ruedaminute.icebreakers.events.SlideEvent.__interfaces__ = [xirsys.cube.events.IEvent];
 StringBuf = function(p) {
 	if( p === $_ ) return;
 	this.b = new Array();
@@ -2498,18 +2674,6 @@ StringBuf.prototype.toString = function() {
 }
 StringBuf.prototype.b = null;
 StringBuf.prototype.__class__ = StringBuf;
-xirsys.cube.mvcs.Command = function() { }
-xirsys.cube.mvcs.Command.__name__ = ["xirsys","cube","mvcs","Command"];
-xirsys.cube.mvcs.Command.prototype.commandMap = null;
-xirsys.cube.mvcs.Command.prototype.eventDispatcher = null;
-xirsys.cube.mvcs.Command.prototype.injector = null;
-xirsys.cube.mvcs.Command.prototype.mediatorMap = null;
-xirsys.cube.mvcs.Command.prototype.Command = function() {
-}
-xirsys.cube.mvcs.Command.prototype.execute = function() {
-}
-xirsys.cube.mvcs.Command.prototype.__class__ = xirsys.cube.mvcs.Command;
-xirsys.cube.mvcs.Command.__interfaces__ = [haxe.rtti.Infos];
 if(!sample.controller) sample.controller = {}
 sample.controller.ShowBoxCommand = function() { }
 sample.controller.ShowBoxCommand.__name__ = ["sample","controller","ShowBoxCommand"];
@@ -2688,7 +2852,6 @@ haxe.rtti.Meta.getFields = function(t) {
 	return meta == null || meta.fields == null?{ }:meta.fields;
 }
 haxe.rtti.Meta.prototype.__class__ = haxe.rtti.Meta;
-if(!com.ruedaminute.icebreakers.model) com.ruedaminute.icebreakers.model = {}
 com.ruedaminute.icebreakers.model.Model = function(p) {
 	if( p === $_ ) return;
 	xirsys.cube.mvcs.Model.call(this);
@@ -2696,22 +2859,67 @@ com.ruedaminute.icebreakers.model.Model = function(p) {
 com.ruedaminute.icebreakers.model.Model.__name__ = ["com","ruedaminute","icebreakers","model","Model"];
 com.ruedaminute.icebreakers.model.Model.__super__ = xirsys.cube.mvcs.Model;
 for(var k in xirsys.cube.mvcs.Model.prototype ) com.ruedaminute.icebreakers.model.Model.prototype[k] = xirsys.cube.mvcs.Model.prototype[k];
-com.ruedaminute.icebreakers.model.Model.prototype.data = null;
-com.ruedaminute.icebreakers.model.Model.prototype.getData = function() {
-	return "some string 1";
+com.ruedaminute.icebreakers.model.Model.prototype.currentSlideType = null;
+com.ruedaminute.icebreakers.model.Model.prototype.businessData = null;
+com.ruedaminute.icebreakers.model.Model.prototype.flirtingData = null;
+com.ruedaminute.icebreakers.model.Model.prototype.partyData = null;
+com.ruedaminute.icebreakers.model.Model.prototype.miscData = null;
+com.ruedaminute.icebreakers.model.Model.prototype.setData = function() {
+	this.setBusinessData();
+	this.setFlirtingData();
+	this.setPartyData();
+	this.setMiscData();
+}
+com.ruedaminute.icebreakers.model.Model.prototype.getData = function(type) {
+	switch(type) {
+	case "business":
+		return this.businessData[Math.floor(Math.random() * this.businessData.length)];
+	case "flirting":
+		return this.flirtingData[Math.floor(Math.random() * this.flirtingData.length)];
+	case "party":
+		return this.partyData[Math.floor(Math.random() * this.partyData.length)];
+	case "misc":
+		return this.miscData[Math.floor(Math.random() * this.miscData.length)];
+	}
+	return null;
+}
+com.ruedaminute.icebreakers.model.Model.prototype.setBusinessData = function() {
+	var conversation1 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation1.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","What's this you're drinking?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Chardonnay."),new com.ruedaminute.icebreakers.model.LineVO("prompt","I'm not a fan of Chardonnay personally.")];
+	var conversation2 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation2.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Where did you get that nametag?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Over there."),new com.ruedaminute.icebreakers.model.LineVO("prompt","Would you mind walking over with me, I'm so bad with directions")];
+	var conversation3 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation3.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Hi!"),new com.ruedaminute.icebreakers.model.LineVO("reply","Hi."),new com.ruedaminute.icebreakers.model.LineVO("prompt","How's it going?"),new com.ruedaminute.icebreakers.model.LineVO("reply","OK, how about yourself?")];
+	this.businessData = [conversation1,conversation2,conversation3];
+}
+com.ruedaminute.icebreakers.model.Model.prototype.setFlirtingData = function() {
+	var conversation1 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation1.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","You are looking very pretty/handsome today."),new com.ruedaminute.icebreakers.model.LineVO("reply","Oh thank you!"),new com.ruedaminute.icebreakers.model.LineVO("prompt","No problem")];
+	var conversation2 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation2.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Boy I bet everyone in here is jealous of me right now."),new com.ruedaminute.icebreakers.model.LineVO("reply","why?"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Because I'm talking to you, of course!")];
+	var conversation3 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation3.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","*Bumps into target* Oh excuse me! How clumsy of me..."),new com.ruedaminute.icebreakers.model.LineVO("reply","No, that's OK"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Here let me clean this up")];
+	this.flirtingData = [conversation1,conversation2,conversation3];
+}
+com.ruedaminute.icebreakers.model.Model.prototype.setPartyData = function() {
+	var conversation1 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation1.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Who farted?"),new com.ruedaminute.icebreakers.model.LineVO("reply","**looks around**"),new com.ruedaminute.icebreakers.model.LineVO("prompt","It was you wasn't it?")];
+	var conversation2 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation2.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","How many of these you think you can drink in one night?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Oh, like 5 maybe?"),new com.ruedaminute.icebreakers.model.LineVO("prompt","That's pitiful")];
+	var conversation3 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation3.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","So, are you a friend of the host/hostess?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Yes"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Nice. I hear they get around"),new com.ruedaminute.icebreakers.model.LineVO("reply","No"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Yeah, neither am I. I've heard he/she is a real drag...")];
+	this.partyData = [conversation1,conversation2,conversation3];
+}
+com.ruedaminute.icebreakers.model.Model.prototype.setMiscData = function() {
+	var conversation1 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation1.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","This is one of my favorite songs!"),new com.ruedaminute.icebreakers.model.LineVO("reply","Oh, I like it a lot too."),new com.ruedaminute.icebreakers.model.LineVO("prompt","Really? Do you also like (similar artist)?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Oh, I hate this song"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Well we can't all have good taste in music now can we?")];
+	var conversation2 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation2.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Wow this is crazier than one of those toddler pageant shows."),new com.ruedaminute.icebreakers.model.LineVO("reply","(shows interest in topic)"),new com.ruedaminute.icebreakers.model.LineVO("prompt","(You should leave now)"),new com.ruedaminute.icebreakers.model.LineVO("reply","Oh, I hate those things."),new com.ruedaminute.icebreakers.model.LineVO("prompt","Best response is, what's that? But that's a good response too.")];
+	var conversation3 = new com.ruedaminute.icebreakers.model.ConversationVO();
+	conversation3.script = [new com.ruedaminute.icebreakers.model.LineVO("prompt","Excuse me can I bum a cigarette?"),new com.ruedaminute.icebreakers.model.LineVO("reply","Sure"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Oh just kidding I would never do something as disgusting as smoke!"),new com.ruedaminute.icebreakers.model.LineVO("reply","No, don't have any"),new com.ruedaminute.icebreakers.model.LineVO("prompt","Cheap bastard!")];
+	this.miscData = [conversation1,conversation2,conversation3];
 }
 com.ruedaminute.icebreakers.model.Model.prototype.__class__ = com.ruedaminute.icebreakers.model.Model;
-if(!com.ruedaminute.icebreakers.controller) com.ruedaminute.icebreakers.controller = {}
-com.ruedaminute.icebreakers.controller.ShowSlideCommand = function() { }
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.__name__ = ["com","ruedaminute","icebreakers","controller","ShowSlideCommand"];
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.__super__ = xirsys.cube.mvcs.Command;
-for(var k in xirsys.cube.mvcs.Command.prototype ) com.ruedaminute.icebreakers.controller.ShowSlideCommand.prototype[k] = xirsys.cube.mvcs.Command.prototype[k];
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.prototype.evt = null;
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.prototype.model = null;
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.prototype.execute = function() {
-	if(this.evt.slideType == "business") js.Lib.alert(this.model.getData());
-}
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.prototype.__class__ = com.ruedaminute.icebreakers.controller.ShowSlideCommand;
 haxe.Log = function() { }
 haxe.Log.__name__ = ["haxe","Log"];
 haxe.Log.trace = function(v,infos) {
@@ -2721,6 +2929,23 @@ haxe.Log.clear = function() {
 	js.Boot.__clear_trace();
 }
 haxe.Log.prototype.__class__ = haxe.Log;
+com.ruedaminute.icebreakers.view.SlideViewerMediator = function(p) {
+	if( p === $_ ) return;
+	xirsys.cube.mvcs.Mediator.call(this);
+}
+com.ruedaminute.icebreakers.view.SlideViewerMediator.__name__ = ["com","ruedaminute","icebreakers","view","SlideViewerMediator"];
+com.ruedaminute.icebreakers.view.SlideViewerMediator.__super__ = xirsys.cube.mvcs.Mediator;
+for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.SlideViewerMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
+com.ruedaminute.icebreakers.view.SlideViewerMediator.prototype.view = null;
+com.ruedaminute.icebreakers.view.SlideViewerMediator.prototype.onRegister = function() {
+	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
+	this.eventDispatcher.addEventHandler(com.ruedaminute.icebreakers.events.SlideEvent.SHOW_SLIDE,$closure(this,"createSlide"));
+}
+com.ruedaminute.icebreakers.view.SlideViewerMediator.prototype.createSlide = function(event) {
+	var currentSlide = this.view.createSlide(event);
+	if(currentSlide != null) this.mediatorMap.createMediator(currentSlide);
+}
+com.ruedaminute.icebreakers.view.SlideViewerMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.SlideViewerMediator;
 hxevents.Dispatcher = function(p) {
 	if( p === $_ ) return;
 	this.handlers = new Array();
@@ -2869,13 +3094,14 @@ Std.prototype.__class__ = Std;
 com.ruedaminute.icebreakers.view.MenuView = function(view) {
 	if( view === $_ ) return;
 	this.view = view;
-	this.businessButton = js.Lib.document.getElementById("businessButton");
-	this.partyButton = js.Lib.document.getElementById("partyButton");
-	this.flirtingButton = js.Lib.document.getElementById("flirtingButton");
-	this.miscButton = js.Lib.document.getElementById("miscButton");
+	this.businessButton = new js.JQuery("#businessButton");
+	this.partyButton = new js.JQuery("#partyButton");
+	this.flirtingButton = new js.JQuery("#flirtingButton");
+	this.miscButton = new js.JQuery("#miscButton");
 }
 com.ruedaminute.icebreakers.view.MenuView.__name__ = ["com","ruedaminute","icebreakers","view","MenuView"];
-com.ruedaminute.icebreakers.view.MenuView.prototype.view = null;
+com.ruedaminute.icebreakers.view.MenuView.__super__ = com.ruedaminute.icebreakers.view.BaseView;
+for(var k in com.ruedaminute.icebreakers.view.BaseView.prototype ) com.ruedaminute.icebreakers.view.MenuView.prototype[k] = com.ruedaminute.icebreakers.view.BaseView.prototype[k];
 com.ruedaminute.icebreakers.view.MenuView.prototype.businessButton = null;
 com.ruedaminute.icebreakers.view.MenuView.prototype.partyButton = null;
 com.ruedaminute.icebreakers.view.MenuView.prototype.flirtingButton = null;
@@ -2895,10 +3121,14 @@ Main.prototype.agent = null;
 Main.prototype.handleStartup = function(evt) {
 	var splashView = new com.ruedaminute.icebreakers.view.SplashScreenView(js.Lib.document.getElementById("splashScreen"));
 	this.agent.getMediatorMap().createMediator(splashView);
-	var slideView = new com.ruedaminute.icebreakers.view.SlideView(js.Lib.document.getElementById("slide"));
-	this.agent.getMediatorMap().createMediator(slideView);
 	var menuView = new com.ruedaminute.icebreakers.view.MenuView(js.Lib.document.getElementById("menuScreen"));
 	this.agent.getMediatorMap().createMediator(menuView);
+	var slideViewer = new com.ruedaminute.icebreakers.view.SlideViewer(js.Lib.document.getElementById("slide"));
+	this.agent.getMediatorMap().createMediator(slideViewer);
+	var appView = new com.ruedaminute.icebreakers.view.AppView(splashView,menuView,slideViewer);
+	this.agent.getMediatorMap().createMediator(appView);
+	this.agent.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SPLASH,new com.ruedaminute.icebreakers.events.AppEvent());
+	this.agent.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.LOAD_DATA,new com.ruedaminute.icebreakers.events.AppEvent());
 }
 Main.prototype.handleRedClick = function(evt) {
 	this.agent.eventDispatcher.dispatch(sample.events.BoxEvent.SHOW_BOX,new sample.events.BoxEvent("red"));
@@ -2907,13 +3137,11 @@ Main.prototype.handleBlueClick = function(evt) {
 	this.agent.eventDispatcher.dispatch(sample.events.BoxEvent.SHOW_BOX,new sample.events.BoxEvent("blue"));
 }
 Main.prototype.__class__ = Main;
-com.ruedaminute.icebreakers.view.SlideView = function(view) {
-	if( view === $_ ) return;
-	this.view = view;
+com.ruedaminute.icebreakers.model.ConversationVO = function(p) {
 }
-com.ruedaminute.icebreakers.view.SlideView.__name__ = ["com","ruedaminute","icebreakers","view","SlideView"];
-com.ruedaminute.icebreakers.view.SlideView.prototype.view = null;
-com.ruedaminute.icebreakers.view.SlideView.prototype.__class__ = com.ruedaminute.icebreakers.view.SlideView;
+com.ruedaminute.icebreakers.model.ConversationVO.__name__ = ["com","ruedaminute","icebreakers","model","ConversationVO"];
+com.ruedaminute.icebreakers.model.ConversationVO.prototype.script = null;
+com.ruedaminute.icebreakers.model.ConversationVO.prototype.__class__ = com.ruedaminute.icebreakers.model.ConversationVO;
 sample.view.BlueBoxViewMediator = function(p) {
 	if( p === $_ ) return;
 	xirsys.cube.mvcs.Mediator.call(this);
@@ -2934,6 +3162,34 @@ sample.view.BlueBoxViewMediator.prototype.hideBox = function(e) {
 	this.view.setVisible(false);
 }
 sample.view.BlueBoxViewMediator.prototype.__class__ = sample.view.BlueBoxViewMediator;
+com.ruedaminute.icebreakers.view.MenuViewMediator = function(p) {
+	if( p === $_ ) return;
+	xirsys.cube.mvcs.Mediator.call(this);
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.__name__ = ["com","ruedaminute","icebreakers","view","MenuViewMediator"];
+com.ruedaminute.icebreakers.view.MenuViewMediator.__super__ = xirsys.cube.mvcs.Mediator;
+for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.MenuViewMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.view = null;
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.onRegister = function() {
+	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
+	this.view.businessButton.click($closure(this,"getBusinessIcebreakers"));
+	this.view.partyButton.click($closure(this,"getPartyIcebreakers"));
+	this.view.flirtingButton.click($closure(this,"getFlirtingIcebreakers"));
+	this.view.miscButton.click($closure(this,"getMiscIcebreakers"));
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.getBusinessIcebreakers = function(e) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,new com.ruedaminute.icebreakers.events.AppEvent("business"));
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.getPartyIcebreakers = function(e) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,new com.ruedaminute.icebreakers.events.AppEvent("party"));
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.getFlirtingIcebreakers = function(e) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,new com.ruedaminute.icebreakers.events.AppEvent("flirting"));
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.getMiscIcebreakers = function(e) {
+	this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE,new com.ruedaminute.icebreakers.events.AppEvent("misc"));
+}
+com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.MenuViewMediator;
 sample.view.ControlsViewMediator = function(p) {
 	if( p === $_ ) return;
 	xirsys.cube.mvcs.Mediator.call(this);
@@ -3152,25 +3408,6 @@ haxe.rtti.TypeApi.constructorEq = function(c1,c2) {
 	return true;
 }
 haxe.rtti.TypeApi.prototype.__class__ = haxe.rtti.TypeApi;
-com.ruedaminute.icebreakers.view.MenuViewMediator = function(p) {
-	if( p === $_ ) return;
-	xirsys.cube.mvcs.Mediator.call(this);
-}
-com.ruedaminute.icebreakers.view.MenuViewMediator.__name__ = ["com","ruedaminute","icebreakers","view","MenuViewMediator"];
-com.ruedaminute.icebreakers.view.MenuViewMediator.__super__ = xirsys.cube.mvcs.Mediator;
-for(var k in xirsys.cube.mvcs.Mediator.prototype ) com.ruedaminute.icebreakers.view.MenuViewMediator.prototype[k] = xirsys.cube.mvcs.Mediator.prototype[k];
-com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.view = null;
-com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.onRegister = function() {
-	xirsys.cube.mvcs.Mediator.prototype.onRegister.call(this);
-	this.view.businessButton.onclick = $closure(this,"handleButtonClick");
-	this.view.partyButton.onclick = $closure(this,"handleButtonClick");
-	this.view.flirtingButton.onclick = $closure(this,"handleButtonClick");
-	this.view.miscButton.onclick = $closure(this,"handleButtonClick");
-}
-com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.handleButtonClick = function(e) {
-	if(e.target == this.view.businessButton) this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE,new com.ruedaminute.icebreakers.events.AppEvent("business")); else if(e.target == this.view.partyButton) this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE,new com.ruedaminute.icebreakers.events.AppEvent("party")); else if(e.target == this.view.flirtingButton) this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE,new com.ruedaminute.icebreakers.events.AppEvent("flirting")); else if(e.target == this.view.miscButton) this.eventDispatcher.dispatch(com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE,new com.ruedaminute.icebreakers.events.AppEvent("misc"));
-}
-com.ruedaminute.icebreakers.view.MenuViewMediator.prototype.__class__ = com.ruedaminute.icebreakers.view.MenuViewMediator;
 if(!xirsys.injector.exceptions) xirsys.injector.exceptions = {}
 xirsys.injector.exceptions.InjectorException = function(_msg,_infos) {
 	if( _msg === $_ ) return;
@@ -3214,10 +3451,11 @@ js.Lib.prototype.__class__ = js.Lib;
 com.ruedaminute.icebreakers.view.SplashScreenView = function(view) {
 	if( view === $_ ) return;
 	this.view = view;
-	this.startButton = new js.JQuery(view).find(".startButton")[0];
+	this.startButton = new js.JQuery("#startButton");
 }
 com.ruedaminute.icebreakers.view.SplashScreenView.__name__ = ["com","ruedaminute","icebreakers","view","SplashScreenView"];
-com.ruedaminute.icebreakers.view.SplashScreenView.prototype.view = null;
+com.ruedaminute.icebreakers.view.SplashScreenView.__super__ = com.ruedaminute.icebreakers.view.BaseView;
+for(var k in com.ruedaminute.icebreakers.view.BaseView.prototype ) com.ruedaminute.icebreakers.view.SplashScreenView.prototype[k] = com.ruedaminute.icebreakers.view.BaseView.prototype[k];
 com.ruedaminute.icebreakers.view.SplashScreenView.prototype.startButton = null;
 com.ruedaminute.icebreakers.view.SplashScreenView.prototype.__class__ = com.ruedaminute.icebreakers.view.SplashScreenView;
 $_ = {}
@@ -3300,16 +3538,26 @@ js.Boot.__init();
 		return f(msg,[url+":"+line]);
 	}
 }
-xirsys.cube.mvcs.Actor.__rtti = "<class path=\"xirsys.cube.mvcs.Actor\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.events.CentralDispatcher\"><d/></c></eventDispatcher>\n</class>";
-com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE = "showSlide";
 xirsys.cube.mvcs.Mediator.__meta__ = { fields : { mediatorMap : { Inject : null}, eventDispatcher : { Inject : null}, injector : { Inject : null}}};
 xirsys.cube.mvcs.Mediator.__rtti = "<class path=\"xirsys.cube.mvcs.Mediator\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<implements path=\"xirsys.cube.abstract.IMediator\"/>\n\t<mediatorMap public=\"1\"><c path=\"xirsys.cube.abstract.IMediatorMap\"><d/></c></mediatorMap>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.abstract.ICentralDispatcher\"><d/></c></eventDispatcher>\n\t<injector public=\"1\"><c path=\"xirsys.injector.Injector\"/></injector>\n\t<eventMap public=\"1\"><c path=\"xirsys.cube.abstract.IEventMap\"><d/></c></eventMap>\n\t<viewComponent public=\"1\"><d/></viewComponent>\n\t<removed public=\"1\"><e path=\"Bool\"/></removed>\n\t<preRemove public=\"1\" set=\"method\" line=\"62\"><f a=\"\"><e path=\"Void\"/></f></preRemove>\n\t<preRegister public=\"1\" set=\"method\" line=\"74\"><f a=\"\"><e path=\"Void\"/></f></preRegister>\n\t<onRegister public=\"1\" set=\"method\" line=\"80\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<onRemove public=\"1\" set=\"method\" line=\"84\"><f a=\"\"><e path=\"Void\"/></f></onRemove>\n\t<getViewComponent public=\"1\" set=\"method\" line=\"88\"><f a=\"\"><unknown/></f></getViewComponent>\n\t<setViewComponent public=\"1\" set=\"method\" line=\"93\"><f a=\"view\">\n\t<d/>\n\t<e path=\"Void\"/>\n</f></setViewComponent>\n\t<new public=\"1\" set=\"method\" line=\"57\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+com.ruedaminute.icebreakers.view.AppViewMediator.__meta__ = { fields : { view : { Inject : null}}};
+com.ruedaminute.icebreakers.view.AppViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.AppViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.AppView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"14\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<new public=\"1\" set=\"method\" line=\"9\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+xirsys.cube.mvcs.Actor.__rtti = "<class path=\"xirsys.cube.mvcs.Actor\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.events.CentralDispatcher\"><d/></c></eventDispatcher>\n</class>";
+com.ruedaminute.icebreakers.events.AppEvent.LOAD_DATA = "loadData";
+com.ruedaminute.icebreakers.events.AppEvent.SHOW_SPLASH = "showSplash";
+com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDE_OF_TYPE = "showSlide";
+com.ruedaminute.icebreakers.events.AppEvent.SHOW_MENU = "showMenu";
+com.ruedaminute.icebreakers.events.AppEvent.SHOW_SLIDES = "showSlides";
 com.ruedaminute.icebreakers.view.SplashViewMediator.__meta__ = { fields : { view : { Inject : null}}};
-com.ruedaminute.icebreakers.view.SplashViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.SplashViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.SplashScreenView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"15\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<handleButtonClick set=\"method\" line=\"22\"><f a=\"e\">\n\t<t path=\"js.Event\"/>\n\t<e path=\"Void\"/>\n</f></handleButtonClick>\n\t<new public=\"1\" set=\"method\" line=\"10\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+com.ruedaminute.icebreakers.view.SplashViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.SplashViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.SplashScreenView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"17\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<handleButtonClick set=\"method\" line=\"24\"><f a=\"e\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></handleButtonClick>\n\t<new public=\"1\" set=\"method\" line=\"12\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
 sample.view.RedBoxViewMediator.__meta__ = { fields : { view : { Inject : null}}};
 sample.view.RedBoxViewMediator.__rtti = "<class path=\"sample.view.RedBoxViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"sample.view.RedBoxView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"10\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<showBox set=\"method\" line=\"17\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></showBox>\n\t<hideBox set=\"method\" line=\"22\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></hideBox>\n\t<new public=\"1\" set=\"method\" line=\"6\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
-com.ruedaminute.icebreakers.view.SlideViewMediator.__meta__ = { fields : { view : { Inject : null}}};
-com.ruedaminute.icebreakers.view.SlideViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.SlideViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.SlideView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"15\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<new public=\"1\" set=\"method\" line=\"9\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+xirsys.cube.mvcs.Command.__meta__ = { fields : { commandMap : { Inject : null}, eventDispatcher : { Inject : null}, injector : { Inject : null}, mediatorMap : { Inject : null}}};
+xirsys.cube.mvcs.Command.__rtti = "<class path=\"xirsys.cube.mvcs.Command\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<commandMap public=\"1\"><c path=\"xirsys.cube.abstract.ICommandMap\"><d/></c></commandMap>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.abstract.ICentralDispatcher\"><d/></c></eventDispatcher>\n\t<injector public=\"1\"><c path=\"xirsys.injector.Injector\"/></injector>\n\t<mediatorMap public=\"1\"><c path=\"xirsys.cube.abstract.IMediatorMap\"><d/></c></mediatorMap>\n\t<Command public=\"1\" set=\"method\" line=\"53\"><f a=\"\"><e path=\"Void\"/></f></Command>\n\t<execute public=\"1\" set=\"method\" line=\"57\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
+com.ruedaminute.icebreakers.controller.LoadDataCommand.__meta__ = { fields : { model : { Inject : null}}};
+com.ruedaminute.icebreakers.controller.LoadDataCommand.__rtti = "<class path=\"com.ruedaminute.icebreakers.controller.LoadDataCommand\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Command\"/>\n\t<model public=\"1\"><c path=\"com.ruedaminute.icebreakers.model.Model\"/></model>\n\t<execute public=\"1\" set=\"method\" line=\"18\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
+com.ruedaminute.icebreakers.view.SlideMediator.__meta__ = { fields : { view : { Inject : null}}};
+com.ruedaminute.icebreakers.view.SlideMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.SlideMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.Slide\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"16\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<getNextSlide set=\"method\" line=\"24\"><f a=\"event\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getNextSlide>\n\t<getMenuView set=\"method\" line=\"29\"><f a=\"event\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getMenuView>\n\t<new public=\"1\" set=\"method\" line=\"10\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
 Xml.enode = new EReg("^<([a-zA-Z0-9:_-]+)","");
 Xml.ecdata = new EReg("^<!\\[CDATA\\[","i");
 Xml.edoctype = new EReg("^<!DOCTYPE ","i");
@@ -3324,23 +3572,24 @@ Xml.edoctype_elt = new EReg("[\\[|\\]>]","");
 Xml.ecomment_end = new EReg("-->","");
 xirsys.cube.mvcs.Model.__meta__ = { fields : { eventDispatcher : { Inject : null}, injector : { Inject : null}}};
 xirsys.cube.mvcs.Model.__rtti = "<class path=\"xirsys.cube.mvcs.Model\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<implements path=\"xirsys.cube.abstract.IModel\"/>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.abstract.ICentralDispatcher\"><d/></c></eventDispatcher>\n\t<injector public=\"1\"><c path=\"xirsys.injector.Injector\"/></injector>\n\t<onRegister public=\"1\" set=\"method\" line=\"49\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<new public=\"1\" set=\"method\" line=\"45\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.__meta__ = { fields : { event : { Inject : null}, model : { Inject : null}}};
+com.ruedaminute.icebreakers.controller.ShowSlidesCommand.__rtti = "<class path=\"com.ruedaminute.icebreakers.controller.ShowSlidesCommand\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Command\"/>\n\t<event public=\"1\"><c path=\"com.ruedaminute.icebreakers.events.AppEvent\"/></event>\n\t<model public=\"1\"><c path=\"com.ruedaminute.icebreakers.model.Model\"/></model>\n\t<execute public=\"1\" set=\"method\" line=\"22\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
 sample.events.BoxEvent.SHOW_RED_BOX = "showRedBox";
 sample.events.BoxEvent.SHOW_BLUE_BOX = "showBlueBox";
 sample.events.BoxEvent.SHOW_BOX = "showBox";
-xirsys.cube.mvcs.Command.__meta__ = { fields : { commandMap : { Inject : null}, eventDispatcher : { Inject : null}, injector : { Inject : null}, mediatorMap : { Inject : null}}};
-xirsys.cube.mvcs.Command.__rtti = "<class path=\"xirsys.cube.mvcs.Command\" params=\"\">\n\t<implements path=\"haxe.rtti.Infos\"/>\n\t<commandMap public=\"1\"><c path=\"xirsys.cube.abstract.ICommandMap\"><d/></c></commandMap>\n\t<eventDispatcher public=\"1\"><c path=\"xirsys.cube.abstract.ICentralDispatcher\"><d/></c></eventDispatcher>\n\t<injector public=\"1\"><c path=\"xirsys.injector.Injector\"/></injector>\n\t<mediatorMap public=\"1\"><c path=\"xirsys.cube.abstract.IMediatorMap\"><d/></c></mediatorMap>\n\t<Command public=\"1\" set=\"method\" line=\"53\"><f a=\"\"><e path=\"Void\"/></f></Command>\n\t<execute public=\"1\" set=\"method\" line=\"57\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
+com.ruedaminute.icebreakers.events.SlideEvent.SHOW_SLIDE = "showSlide";
 sample.controller.ShowBoxCommand.__meta__ = { fields : { evt : { Inject : null}}};
 sample.controller.ShowBoxCommand.__rtti = "<class path=\"sample.controller.ShowBoxCommand\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Command\"/>\n\t<evt public=\"1\"><c path=\"sample.events.BoxEvent\"/></evt>\n\t<execute public=\"1\" set=\"method\" line=\"10\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
 xirsys.cube.events.AgentEvent.STARTUP_COMPLETE = "/mvc/events/startupComplete";
-com.ruedaminute.icebreakers.model.Model.__rtti = "<class path=\"com.ruedaminute.icebreakers.model.Model\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Model\"/>\n\t<data><c path=\"Array\"><c path=\"String\"/></c></data>\n\t<getData public=\"1\" set=\"method\" line=\"13\"><f a=\"\"><c path=\"String\"/></f></getData>\n\t<new public=\"1\" set=\"method\" line=\"8\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.__meta__ = { fields : { evt : { Inject : null}, model : { Inject : null}}};
-com.ruedaminute.icebreakers.controller.ShowSlideCommand.__rtti = "<class path=\"com.ruedaminute.icebreakers.controller.ShowSlideCommand\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Command\"/>\n\t<evt public=\"1\"><c path=\"com.ruedaminute.icebreakers.events.AppEvent\"/></evt>\n\t<model public=\"1\"><c path=\"com.ruedaminute.icebreakers.model.Model\"/></model>\n\t<execute public=\"1\" set=\"method\" line=\"21\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></execute>\n</class>";
+com.ruedaminute.icebreakers.model.Model.__rtti = "<class path=\"com.ruedaminute.icebreakers.model.Model\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Model\"/>\n\t<currentSlideType public=\"1\"><c path=\"String\"/></currentSlideType>\n\t<businessData><c path=\"Array\"><c path=\"com.ruedaminute.icebreakers.model.ConversationVO\"/></c></businessData>\n\t<flirtingData><c path=\"Array\"><c path=\"com.ruedaminute.icebreakers.model.ConversationVO\"/></c></flirtingData>\n\t<partyData><c path=\"Array\"><c path=\"com.ruedaminute.icebreakers.model.ConversationVO\"/></c></partyData>\n\t<miscData><c path=\"Array\"><c path=\"com.ruedaminute.icebreakers.model.ConversationVO\"/></c></miscData>\n\t<setData public=\"1\" set=\"method\" line=\"18\"><f a=\"\"><e path=\"Void\"/></f></setData>\n\t<getData public=\"1\" set=\"method\" line=\"26\"><f a=\"type\">\n\t<c path=\"String\"/>\n\t<c path=\"com.ruedaminute.icebreakers.model.ConversationVO\"/>\n</f></getData>\n\t<setBusinessData set=\"method\" line=\"43\"><f a=\"\"><e path=\"Void\"/></f></setBusinessData>\n\t<setFlirtingData set=\"method\" line=\"57\"><f a=\"\"><e path=\"Void\"/></f></setFlirtingData>\n\t<setPartyData set=\"method\" line=\"71\"><f a=\"\"><e path=\"Void\"/></f></setPartyData>\n\t<setMiscData set=\"method\" line=\"86\"><f a=\"\"><e path=\"Void\"/></f></setMiscData>\n\t<new public=\"1\" set=\"method\" line=\"8\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+com.ruedaminute.icebreakers.view.SlideViewerMediator.__meta__ = { fields : { view : { Inject : null}}};
+com.ruedaminute.icebreakers.view.SlideViewerMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.SlideViewerMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.SlideViewer\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"17\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<createSlide set=\"method\" line=\"24\"><f a=\"event\">\n\t<c path=\"com.ruedaminute.icebreakers.events.SlideEvent\"/>\n\t<e path=\"Void\"/>\n</f></createSlide>\n\t<new public=\"1\" set=\"method\" line=\"11\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
 sample.view.BlueBoxViewMediator.__meta__ = { fields : { view : { Inject : null}}};
 sample.view.BlueBoxViewMediator.__rtti = "<class path=\"sample.view.BlueBoxViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"sample.view.BlueBoxView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"10\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<showBox set=\"method\" line=\"17\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></showBox>\n\t<hideBox set=\"method\" line=\"22\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></hideBox>\n\t<new public=\"1\" set=\"method\" line=\"6\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
+com.ruedaminute.icebreakers.view.MenuViewMediator.__meta__ = { fields : { view : { Inject : null}}};
+com.ruedaminute.icebreakers.view.MenuViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.MenuViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.MenuView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"17\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<getBusinessIcebreakers set=\"method\" line=\"27\"><f a=\"e\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getBusinessIcebreakers>\n\t<getPartyIcebreakers set=\"method\" line=\"32\"><f a=\"e\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getPartyIcebreakers>\n\t<getFlirtingIcebreakers set=\"method\" line=\"38\"><f a=\"e\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getFlirtingIcebreakers>\n\t<getMiscIcebreakers set=\"method\" line=\"44\"><f a=\"e\">\n\t<t path=\"js.JqEvent\"/>\n\t<e path=\"Void\"/>\n</f></getMiscIcebreakers>\n\t<new public=\"1\" set=\"method\" line=\"11\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
 sample.view.ControlsViewMediator.__meta__ = { fields : { view : { Inject : null}}};
 sample.view.ControlsViewMediator.__rtti = "<class path=\"sample.view.ControlsViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"sample.view.ControlsView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"11\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<handleButtonClick set=\"method\" line=\"21\"><f a=\"e\">\n\t<t path=\"js.Event\"/>\n\t<e path=\"Void\"/>\n</f></handleButtonClick>\n\t<disableButton1 set=\"method\" line=\"29\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></disableButton1>\n\t<disableButton2 set=\"method\" line=\"33\"><f a=\"e\">\n\t<unknown/>\n\t<e path=\"Void\"/>\n</f></disableButton2>\n\t<new public=\"1\" set=\"method\" line=\"7\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
-com.ruedaminute.icebreakers.view.MenuViewMediator.__meta__ = { fields : { view : { Inject : null}}};
-com.ruedaminute.icebreakers.view.MenuViewMediator.__rtti = "<class path=\"com.ruedaminute.icebreakers.view.MenuViewMediator\" params=\"\">\n\t<extends path=\"xirsys.cube.mvcs.Mediator\"/>\n\t<view public=\"1\"><c path=\"com.ruedaminute.icebreakers.view.MenuView\"/></view>\n\t<onRegister public=\"1\" set=\"method\" line=\"16\" override=\"1\"><f a=\"\"><e path=\"Void\"/></f></onRegister>\n\t<handleButtonClick set=\"method\" line=\"26\"><f a=\"e\">\n\t<t path=\"js.Event\"/>\n\t<e path=\"Void\"/>\n</f></handleButtonClick>\n\t<new public=\"1\" set=\"method\" line=\"10\"><f a=\"\"><e path=\"Void\"/></f></new>\n</class>";
 xirsys.cube.core.CubeError.E_COMMANDMAP_NOIMPL = "Command Class does not implement an execute() method";
 xirsys.cube.core.CubeError.E_COMMANDMAP_OVR = "Cannot overwrite map";
 xirsys.cube.core.CubeError.E_MEDIATORMAP_NOIMPL = "Mediator Class does not implement IMediator";
