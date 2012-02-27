@@ -49,10 +49,6 @@ class Main {
 		var appView = new AppView(splashView, menuView, slideViewer);
 		agent.mediatorMap.createMediator( appView );
 		
-		/*var controlsView = new ControlsView( js.Lib.document.createElement("div") );
-		agent.container.view.appendChild(controlsView.view);
-		agent.mediatorMap.createMediator( controlsView );*/
-		
 		agent.eventDispatcher.dispatch( AppEvent.SHOW_SPLASH, new AppEvent() );
 		agent.eventDispatcher.dispatch( AppEvent.LOAD_DATA, new AppEvent() );
 	}
